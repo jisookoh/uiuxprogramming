@@ -13,53 +13,74 @@
       정보 순서: 결혼 문구 visual -> 웨딩 사진 갤러리 -> 결혼식 위치 및 주소 -> 축하 메세지 작성
     -->
     <header>
-      <h1>몽룡과 춘향, 저희 결혼합니다.</h1>
-      <p>
-        오랜 기다림 끝에 두 사람이 하나가 되는 자리에 소중한 분들을 모십니다.
-      </p>
+      <nav aria-label="주요 메뉴">
+        <a href="#intro">Home</a>
+        <a href="#our-history">Our History</a>
+        <a href="#directions">오시는길</a>
+        <a href="#send-messages">축하메세지</a>
+      </nav>
     </header>
 
-    <h2>Our History</h2>
-    <p>우리의 아름다운 순간들을 함께해 주세요.</p>
-    <ul>
-      <li>
-        <img src="/assets/images/gallary_1.png" alt="처음 만난 날" />
-        <h3>처음 만난 날</h3>
-      </li>
-      <li>
-        <img src="/assets/images/gallary_2.png" alt="첫 1주년" />
-        <h3>첫 1주년</h3>
-      </li>
-      <li>
-        <img src="/assets/images/gallary_3.png" alt="프로포즈" />
-        <h3>프로포즈</h3>
-      </li>
-      <li>
-        <img src="/assets/images/gallary_4.png" alt="웨딩 사진" />
-        <h3>웨딩 사진</h3>
-      </li>
-    </ul>
+    <main>
+      <section id="intro">
+        <h1>몽룡과 춘향, 저희 결혼합니다.</h1>
+        <p>
+          오랜 기다림 끝에 두 사람이 하나가 되는 자리에 소중한 분들을 모십니다.
+        </p>
+      </section>
 
-    <h2>오시는 길</h2>
-    <p>
-      일시: 2026년 10월 24일 토요일 낮 12시<br />
-      장소: 전북 남원시 요천로 광한루 웨딩홀 1층 사랑관
-    </p>
-    <ol>
-      <li>자가용: 내비게이션 '광한루 웨딩홀' 검색 (주차 2시간 무료)</li>
-      <li>대중교통: 남원역 하차 후 101번 버스 탑승, 광한루 앞 하차</li>
-    </ol>
+      <section id="our-history">
+        <h2>Our History</h2>
+        <p>우리의 아름다운 순간들을 함께해 주세요.</p>
+        <ul>
+          <li>
+            <img src="/assets/images/gallary_1.png" alt="처음 만난 날" />
+            <h3>처음 만난 날</h3>
+          </li>
+          <li>
+            <img src="/assets/images/gallary_2.png" alt="첫 1주년" />
+            <h3>첫 1주년</h3>
+          </li>
+          <li>
+            <img src="/assets/images/gallary_3.png" alt="프로포즈" />
+            <h3>프로포즈</h3>
+          </li>
+          <li>
+            <img src="/assets/images/gallary_4.png" alt="웨딩 사진" />
+            <h3>웨딩 사진</h3>
+          </li>
+        </ul>
+      </section>
 
-    <h2>축하 메시지</h2>
-    <p>두 사람의 새로운 출발을 축하해 주세요.</p>
-    <form>
-      <label for="nickname">닉네임</label>
-      <input type="text" id="nickname" name="nickname" />
-      <br />
-      <label for="content">따뜻한 축하의 한마디를 남겨주세요!</label>
-      <textarea id="content" name="content"></textarea>
-      <br />
-      <button type="sutmit">전송</button>
-    </form>
+      <section id="directions">
+        <h2>오시는 길</h2>
+        <p>
+          일시: 2026년 10월 24일 토요일 낮 12시<br />
+          장소: 전북 남원시 요천로 광한루 웨딩홀 1층 사랑관
+        </p>
+        <ol>
+          <li>자가용: 내비게이션 '광한루 웨딩홀' 검색 (주차 2시간 무료)</li>
+          <li>대중교통: 남원역 하차 후 101번 버스 탑승, 광한루 앞 하차</li>
+        </ol>
+      </section>
+
+      <section id="send-messages">
+        <h2>축하 메시지</h2>
+        <p>두 사람의 새로운 출발을 축하해 주세요.</p>
+        <form>
+          <label for="nickname">닉네임</label>
+          <input type="text" id="nickname" name="nickname" />
+          <br />
+          <label for="content">따뜻한 축하의 한마디를 남겨주세요!</label>
+          <textarea id="content" name="content"></textarea>
+          <br />
+          <button type="sutmit">전송</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <small>© 2026 모바일 청첩장</small>
+    </footer>
   </body>
 </html>
