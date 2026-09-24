@@ -16,6 +16,10 @@ body {
 header,
 main,
 footer {
+  /* 좁은 화면에서도 사용 가능한 너비에 맞춰 줄어듭니다. */
+  width: 100%;
+
+  /* 넓은 화면에서도 콘텐츠는 620ox보다 커지지 않습니다. */
   max-width: 620px;
   padding: 0 20px;
   margin: 0 auto;
@@ -46,6 +50,8 @@ img {
 
 nav {
   display: flex;
+  /* 메뉴가 들어갈 자리가 부족하면 다음 줄로 이동 */
+  flex-wrap: wrap;
   gap: 24px;
 }
 
@@ -146,10 +152,10 @@ form {
   list-style-type: none;
   padding: 0;
   margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: stretch;
-  gap: 16px;
+  display: grid;
+  /* 들어갈 수 있는 만큼 열을 만들고, 카드 너비는 최소 200px부터 남은 공간까지 사용 */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
 }
 
 .our-history-card {
@@ -157,7 +163,7 @@ form {
   border: 1px solid #deddea;
   border-radius: 12px;
   background-color: #f4f3ff;
-  flex: 1 1 25%;
+  min-width: 0;
 }
 
 .messages-card {
@@ -166,4 +172,65 @@ form {
   background-color: #f4f3ff;
   border: 1px solid #deddea;
   border-radius: 12px;
+}
+
+/*  웹 페이지가 표시되는 가로 폭이 620px 이하일 때만 적용 */
+@media (max-width: 620px) {
+  body {
+    font-size: 16px;
+  }
+
+  header {
+    padding-top: 32px;
+    padding-bottom: 24px;
+  }
+
+  section {
+    margin-top: 40px;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+
+  h2 {
+    font-size: 28px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  input,
+  button,
+  textarea {
+    width: 100%;
+  }
+
+  button {
+    /* 모바일에서 버튼이 너무 낮아지지 않게 */
+    min-height: 48px;
+  }
+
+  form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  nav a {
+    padding: 8px 0;
+  }
+}
+
+/*  웹 페이지가 표시되는 가로 폭이 499px 이하일 때만 적용 */
+@media (max-width: 499px) {
+  .our-history-list {
+    grid-template-columns: 1fr;
+  }
 }
