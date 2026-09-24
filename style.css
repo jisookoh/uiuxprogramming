@@ -49,13 +49,13 @@ img {
 }
 
 nav {
-  display: flex;
-  /* 메뉴가 들어갈 자리가 부족하면 다음 줄로 이동 */
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 24px;
 }
 
 nav a {
+  text-align: center;
   color: #5b5870;
   font-weight: 700;
   text-decoration: none;
@@ -185,6 +185,20 @@ form {
     padding-bottom: 24px;
   }
 
+  nav {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+  }
+
+  nav a {
+    padding: 8px 0;
+    text-align: left;
+  }
+}
+
+/*  웹 페이지가 표시되는 가로 폭이 499px 이하일 때만 적용 */
+@media (max-width: 499px) {
   section {
     margin-top: 40px;
   }
@@ -205,31 +219,18 @@ form {
   button,
   textarea {
     width: 100%;
+    min-height: 52px;
+    font-size: 16px;
   }
 
-  button {
-    /* 모바일에서 버튼이 너무 낮아지지 않게 */
-    min-height: 48px;
-  }
-
-  form {
+  .intro-card {
+    min-height: calc(100vh - 140px);
+    padding-top: 0;
+    display: flex;
     flex-direction: column;
-    align-items: stretch;
+    justify-content: center;
   }
 
-  nav {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-  }
-
-  nav a {
-    padding: 8px 0;
-  }
-}
-
-/*  웹 페이지가 표시되는 가로 폭이 499px 이하일 때만 적용 */
-@media (max-width: 499px) {
   .our-history-list {
     grid-template-columns: 1fr;
   }
