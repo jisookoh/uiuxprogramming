@@ -82,20 +82,26 @@
       <section id="send-messages" class="messages-card">
         <h2>축하 메시지</h2>
         <p>두 사람의 새로운 출발을 축하해 주세요.</p>
-        <form>
+        <form id="message-form">
           <label for="nickname">닉네임</label>
           <input type="text" id="nickname" name="nickname" />
 
           <label for="content">따뜻한 축하의 한마디를 남겨주세요!</label>
           <textarea id="content" name="content"></textarea>
 
-          <button type="sutmit">메세지 남기기</button>
+          <button type="sutmit" id="submit-btn">메세지 남기기</button>
         </form>
+
+        <p id="notice" aria-live="polite">
+          닉네임과 축하의 한마디를 입력해주세요.
+        </p>
       </section>
     </main>
 
     <footer>
       <small>© 2026 모바일 청첩장</small>
     </footer>
+
+    <script src="script.js"></script>
   </body>
 </html>
