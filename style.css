@@ -13,6 +13,23 @@ body {
   background-color: #f7f7fb;
 }
 
+body.dark {
+  color: #f4f4f8;
+  background-color: #20212a;
+}
+
+body.dark p,
+body.dark nav p {
+  color: #d8b8e2;
+}
+
+body.dark .our-history-card,
+body.dark .messages-card,
+body.dark .event-card {
+  background-color: #50515f;
+  border-color: #2d2e38;
+}
+
 header,
 main,
 footer {
@@ -131,6 +148,12 @@ button:active {
   transform: translateY(1px);
 }
 
+button:disabled {
+  color: #ffffff;
+  background-color: #a8a8b2;
+  cursor: not-allowed;
+}
+
 button:focus,
 input:focus,
 textarea:focus {
@@ -187,10 +210,110 @@ form {
   font-weight: 700;
 }
 
-#submit-btn:disabled {
+/* default setting */
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.event-card {
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid #deddea;
+  border-radius: 12px;
+  background-color: #ffffff;
+}
+
+.event-card h3 {
+  margin-bottom: 24px;
+}
+
+.event-card label:not(.agree-row) {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.event-card input[type="text"] {
+  width: 100%;
+}
+
+.agree-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.agree-row input {
+  flex: 0 0 auto;
+  margin-top: 6px;
+}
+
+#agree-message {
+  padding: 12px;
+  border-radius: 10px;
+  background-color: #ecebf2;
+}
+
+#agree-message.is-ready {
+  color: #245c3a;
+  background-color: #e7f7ea;
+  font-weight: 700;
+}
+
+/* tabs */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.tab {
+  color: #5b5870;
+  background-color: #ffffff;
+  border: 1px solid #deddea;
+}
+
+.tab:hover {
   color: #ffffff;
-  background-color: #a8a8b2;
-  cursor: not-allowed;
+  background-color: #4b43db;
+}
+
+.tab.is-active {
+  color: #635bff;
+  background-color: #ffffff;
+  border-color: #635bff;
+  border-bottom: 4px solid currentColor;
+  font-weight: 700;
+}
+
+.panel {
+  padding: 24px;
+  border: 1px solid #deddea;
+  border-radius: 12px;
+  background-color: #f4f3ff;
+}
+
+.panel[hidden] {
+  display: none;
+}
+
+body.dark .tab {
+  color: #d8b8e2;
+  background-color: #2d2e38;
+  border-color: #50515f;
+}
+
+body.dark .tab.is-active {
+  color: #b9b5ff;
+  border-color: #b9b5ff;
+}
+
+body.dark .panel {
+  background-color: #2d2e38;
+  border-color: #50515f;
 }
 
 /*  웹 페이지가 표시되는 가로 폭이 620px 이하일 때만 적용 */
@@ -212,6 +335,16 @@ form {
 
   nav a {
     padding: 8px 0;
+    text-align: left;
+  }
+
+  .tabs {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tab {
+    width: 100%;
     text-align: left;
   }
 }
@@ -240,6 +373,11 @@ form {
     width: 100%;
     min-height: 52px;
     font-size: 16px;
+  }
+
+  input[type="checkbox"] {
+    width: auto;
+    min-height: auto;
   }
 
   .intro-card {

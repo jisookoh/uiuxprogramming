@@ -47,24 +47,96 @@
       <section id="our-history">
         <h2>Our History</h2>
         <p>우리의 아름다운 순간들을 함께해 주세요.</p>
-        <ul class="our-history-list">
-          <li class="our-history-card">
-            <img src="./assets/images/gallary_1.png" alt="처음 만난 날" />
+
+        <div class="tabs" role="tablist" aria-label="기능 선택">
+          <button
+            id="tab-first-meet"
+            class="tab is-active"
+            type="button"
+            role="tab"
+            aria-selected="true"
+            aria-controls="history-first-meet"
+            data-target="#history-first-meet"
+          >
             <h3>처음 만난 날</h3>
-          </li>
-          <li class="our-history-card">
-            <img src="./assets/images/gallary_2.png" alt="첫 1주년" />
+          </button>
+          <button
+            id="tab-a-year"
+            class="tab"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="history-a-year"
+            data-target="#history-a-year"
+          >
             <h3>첫 1주년</h3>
-          </li>
-          <li class="our-history-card">
-            <img src="./assets/images/gallary_3.png" alt="프로포즈" />
+          </button>
+          <button
+            id="tab-propose"
+            class="tab"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="history-propose"
+            data-target="#history-propose"
+          >
             <h3>프로포즈</h3>
-          </li>
-          <li class="our-history-card">
-            <img src="./assets/images/gallary_4.png" alt="웨딩 사진" />
+          </button>
+          <button
+            id="tab-wedding"
+            class="tab"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="history-wedding"
+            data-target="#history-wedding"
+          >
             <h3>웨딩 사진</h3>
-          </li>
-        </ul>
+          </button>
+        </div>
+
+        <div
+          id="history-first-meet"
+          class="panel is-active"
+          role="tabpanel"
+          aria-labelledby="tab-first-meet"
+        >
+          <img src="./assets/images/gallary_1.png" alt="처음 만난 날" />
+          <h3>처음 만난 날</h3>
+        </div>
+
+        <div
+          id="history-a-year"
+          class="panel"
+          role="tabpanel"
+          aria-labelledby="tab-a-year"
+          hidden
+        >
+          <img src="./assets/images/gallary_2.png" alt="첫 1주년" />
+          <h3>첫 1주년</h3>
+        </div>
+
+        <div
+          id="history-propose"
+          class="panel"
+          role="tabpanel"
+          aria-labelledby="tab-propose"
+          hidden
+        >
+          <img src="./assets/images/gallary_3.png" alt="프로포즈" />
+          <h3>프로포즈</h3>
+        </div>
+
+        <div
+          id="history-wedding"
+          class="panel"
+          role="tabpanel"
+          aria-labelledby="tab-wedding"
+          hidden
+        >
+          <img src="./assets/images/gallary_4.png" alt="웨딩 사진" />
+          <h3>웨딩 사진</h3>
+        </div>
       </section>
 
       <section id="directions">
@@ -77,6 +149,42 @@
           <li>자가용: 내비게이션 '광한루 웨딩홀' 검색 (주차 2시간 무료)</li>
           <li>대중교통: 남원역 하차 후 101번 버스 탑승, 광한루 앞 하차</li>
         </ol>
+      </section>
+
+      <section id="event-practice">
+        <h2>기본 설정</h2>
+
+        <div class="event-grid">
+          <article class="event-card">
+            <h3>화면 테마</h3>
+
+            <button id="theme-button" type="button">Dark</button>
+          </article>
+
+          <article class="event-card">
+            <h3>사용자 정보</h3>
+
+            <label for="name">발표자 이름</label>
+            <input type="text" id="name" maxlength="10" />
+
+            <p id="name-count" aria-live="polite">0 / 10</p>
+          </article>
+
+          <article class="event-card">
+            <h3>개인정보 활용 동의</h3>
+
+            <label class="agree-row">
+              <input type="checkbox" id="agree-check" />
+              개인정보 처리방침에 동의합니다.
+            </label>
+
+            <p id="agree-message" aria-live="polite">
+              동의 후 전송할 수 있습니다.
+            </p>
+
+            <button id="start-button" type="button" disabled>시작하기</button>
+          </article>
+        </div>
       </section>
 
       <section id="send-messages" class="messages-card">
