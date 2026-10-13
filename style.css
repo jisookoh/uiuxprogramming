@@ -47,6 +47,12 @@ header {
   padding-bottom: 32px;
 }
 
+.theme-toggle {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
 footer {
   padding-top: 32px;
   padding-bottom: 32px;
@@ -167,6 +173,10 @@ form {
   gap: 12px;
 }
 
+form #name-count {
+  margin: -4px 0 4px;
+}
+
 .intro-card {
   padding: 80px 0;
 }
@@ -248,18 +258,6 @@ form {
 .agree-row input {
   flex: 0 0 auto;
   margin-top: 6px;
-}
-
-#agree-message {
-  padding: 12px;
-  border-radius: 10px;
-  background-color: #ecebf2;
-}
-
-#agree-message.is-ready {
-  color: #245c3a;
-  background-color: #e7f7ea;
-  font-weight: 700;
 }
 
 /* tabs */

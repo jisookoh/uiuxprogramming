@@ -28,6 +28,10 @@
       정보 순서: 결혼 문구 visual -> 웨딩 사진 갤러리 -> 결혼식 위치 및 주소 -> 축하 메세지 작성
     -->
     <header>
+      <div class="theme-toggle">
+        <button id="theme-button" type="button">다크</button>
+      </div>
+
       <nav aria-label="주요 메뉴">
         <a href="#intro">Home</a>
         <a href="#our-history">Our History</a>
@@ -151,53 +155,23 @@
         </ol>
       </section>
 
-      <section id="event-practice">
-        <h2>기본 설정</h2>
-
-        <div class="event-grid">
-          <article class="event-card">
-            <h3>화면 테마</h3>
-
-            <button id="theme-button" type="button">Dark</button>
-          </article>
-
-          <article class="event-card">
-            <h3>사용자 정보</h3>
-
-            <label for="name">발표자 이름</label>
-            <input type="text" id="name" maxlength="10" />
-
-            <p id="name-count" aria-live="polite">0 / 10</p>
-          </article>
-
-          <article class="event-card">
-            <h3>개인정보 활용 동의</h3>
-
-            <label class="agree-row">
-              <input type="checkbox" id="agree-check" />
-              개인정보 처리방침에 동의합니다.
-            </label>
-
-            <p id="agree-message" aria-live="polite">
-              동의 후 전송할 수 있습니다.
-            </p>
-
-            <button id="start-button" type="button" disabled>시작하기</button>
-          </article>
-        </div>
-      </section>
-
       <section id="send-messages" class="messages-card">
         <h2>축하 메시지</h2>
         <p>두 사람의 새로운 출발을 축하해 주세요.</p>
         <form id="message-form">
           <label for="nickname">닉네임</label>
-          <input type="text" id="nickname" name="nickname" />
+          <input type="text" id="nickname" name="nickname" maxlength="10" />
+          <p id="name-count" aria-live="polite">0 / 10</p>
 
           <label for="content">따뜻한 축하의 한마디를 남겨주세요!</label>
           <textarea id="content" name="content"></textarea>
 
-          <button type="sutmit" id="submit-btn">메세지 남기기</button>
+          <label class="agree-row">
+            <input type="checkbox" id="agree-check" />
+            개인정보 처리방침에 동의합니다.
+          </label>
+
+          <button type="submit" id="submit-btn">메세지 남기기</button>
         </form>
 
         <p id="notice" aria-live="polite">

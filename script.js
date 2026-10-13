@@ -33,6 +33,12 @@ function handleSubmit(event) {
     return;
   }
 
+  if (!$agreeCheck.checked) {
+    $notice.textContent = "개인정보 활용 동의가 필요합니다.";
+    $agreeCheck.focus();
+    return;
+  }
+
   isSubmitted = true;
   submitCount += 1;
 
@@ -40,7 +46,6 @@ function handleSubmit(event) {
   $notice.classList.add("is-success");
 
   $submitButton.textContent = "전송 완료";
-  $submitButton.disabled = true;
 
   $nickNameInput.value = "";
   $contentTextarea.value = "";
@@ -51,18 +56,14 @@ $messageForm.addEventListener("submit", handleSubmit);
 // 기본 설정 이벤트
 
 const $themeButton = document.querySelector("#theme-button");
-const $nameInput = document.querySelector("#name");
+const $nameInput = document.querySelector("#nickname");
 const $nameCount = document.querySelector("#name-count");
 const $agreeCheck = document.querySelector("#agree-check");
-const $agreeMessage = document.querySelector("#agree-message");
-const $startButton = document.querySelector("#start-button");
 
 function handleThemeClick(event) {
   const isDark = document.body.classList.toggle("dark");
 
-  $themeButton.textContent = isDark
-    ? "라이트 테마로 바꾸기"
-    : "다크 테마로 바꾸기";
+  $themeButton.textContent = isDark ? "라이트" : "다크";
 }
 
 $themeButton.addEventListener("click", handleThemeClick);
@@ -75,23 +76,6 @@ function handleNameInput() {
 }
 
 $nameInput.addEventListener("input", handleNameInput);
-
-function handleAgreeChange() {
-  const agreed = $agreeCheck.checked;
-
-  $startButton.disabled = !agreed;
-  $agreeMessage.textContent = agreed
-    ? "전송 할 수 있습니다."
-    : "동의 후 전송할 수 있습니다.";
-
-  if (agreed) {
-    $agreeMessage.classList.add("is-ready");
-  } else {
-    $agreeMessage.classList.remove("is-ready");
-  }
-}
-
-$agreeCheck.addEventListener("change", handleAgreeChange);
 
 // tabs
 const $tabs = document.querySelectorAll(".tab");
