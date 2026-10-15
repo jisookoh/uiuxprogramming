@@ -6,7 +6,7 @@
 
 body {
   color: #292a31;
-  font-family: "Hahmlet", sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   font-size: 16px;
   line-height: 1.6;
   margin: 0;
@@ -94,6 +94,7 @@ h6 {
 }
 
 h1 {
+  font-family: "Hahmlet", sans-serif;
   font-size: 48px;
   font-weight: 800;
   line-height: 1.2;
@@ -120,6 +121,7 @@ p {
 }
 
 input,
+select,
 textarea {
   flex: 1;
   min-width: 0;
@@ -130,6 +132,7 @@ textarea {
 
 input,
 button,
+select,
 textarea {
   font-family: "Noto Sans KR", sans-serif;
 }
@@ -162,6 +165,7 @@ button:disabled {
 
 button:focus,
 input:focus,
+select:focus,
 textarea:focus {
   outline: 3px solid #b9b5ff;
   outline-offset: 2px;
@@ -171,10 +175,6 @@ form {
   display: flex;
   flex-direction: column;
   gap: 12px;
-}
-
-form #name-count {
-  margin: -4px 0 4px;
 }
 
 .intro-card {
@@ -205,19 +205,6 @@ form #name-count {
   background-color: #f4f3ff;
   border: 1px solid #deddea;
   border-radius: 12px;
-}
-
-#notice {
-  margin-top: 16px;
-  color: #555763;
-}
-
-#notice.is-success {
-  color: #245c3a;
-  background-color: #e7f7ed;
-  padding: 12px;
-  border-radius: 10px;
-  font-weight: 700;
 }
 
 /* default setting */
@@ -314,6 +301,121 @@ body.dark .panel {
   border-color: #50515f;
 }
 
+#send-message-dialog {
+  width: min(520px, calc(100% - 32px));
+  max-width: none;
+  padding: 24px;
+  border: 1px solid #deddea;
+  border-radius: 12px;
+  background-color: #fff;
+  color: #27232c;
+}
+#send-message-dialog::backdrop {
+  background: rgba(30, 20, 39, 0.6);
+}
+#send-message-dialog .dialog-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+#send-message-dialog .dialog-actions button {
+  min-height: 44px;
+}
+body.dark #send-message-dialog {
+  background-color: #50515f;
+  color: #fff;
+}
+
+.send-message-flow {
+  padding: 24px;
+  border: 1px solid #deddea;
+  border-radius: 24px;
+  background-color: #fff;
+}
+.send-message-flow[hidden],
+.send-message-flow .step[hidden],
+.send-message-flow [hidden] {
+  display: none;
+}
+.send-message-flow .progress {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.send-message-flow .progress__item.is-active {
+  color: #635bff;
+  font-weight: 800;
+}
+.send-message-flow label,
+.send-message-flow legend {
+  display: block;
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.send-message-flow .step > label,
+.send-message-flow legend {
+  margin-bottom: 8px;
+}
+.send-message-flow input[type="text"],
+.send-message-flow select,
+.send-message-flow textarea {
+  width: 100%;
+}
+.send-message-flow fieldset {
+  display: flex;
+  gap: 16px;
+  padding: 0;
+  border: 0;
+}
+.send-message-flow fieldset label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.send-message-flow .error-message {
+  min-height: 20px;
+  color: #9d243d;
+  font-size: 13px;
+  font-weight: 600;
+}
+.send-message-flow .has-error {
+  border-color: #9d243d;
+}
+.send-message-flow input[type="radio"] {
+  flex: 0 0 auto;
+  width: auto;
+  accent-color: #635bff;
+}
+.send-message-flow .summary-list > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid #deddea;
+}
+.send-message-flow .summary-list strong {
+  text-align: right;
+  white-space: pre-wrap;
+}
+.send-message-flow .character-count {
+  margin: 4px 0 0;
+  text-align: right;
+}
+.send-message-flow .step-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+body.dark .send-message-flow {
+  background-color: #50515f;
+  border-color: #2d2e38;
+}
+body.dark .send-message-flow .error-message {
+  color: #ffb3bd;
+}
+
 /*  웹 페이지가 표시되는 가로 폭이 620px 이하일 때만 적용 */
 @media (max-width: 620px) {
   body {
@@ -367,6 +469,7 @@ body.dark .panel {
 
   input,
   button,
+  select,
   textarea {
     width: 100%;
     min-height: 52px;
@@ -388,5 +491,25 @@ body.dark .panel {
 
   .our-history-list {
     grid-template-columns: 1fr;
+  }
+
+  .send-message-flow {
+    padding: 20px;
+  }
+
+  #send-message-dialog .dialog-actions {
+    flex-direction: column-reverse;
+  }
+  #send-message-dialog .dialog-actions button {
+    width: 100%;
+  }
+  .send-message-flow .step-actions {
+    flex-direction: column-reverse;
+  }
+  .send-message-flow .step-actions button {
+    width: 100%;
+  }
+  .send-message-flow input[type="radio"] {
+    width: auto;
   }
 }

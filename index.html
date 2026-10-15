@@ -11,13 +11,6 @@
       href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@100..900&family=Noto+Sans+KR:wght@100..900&display=swap"
       rel="stylesheet"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
-
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -159,24 +152,143 @@
         <h2>축하 메시지</h2>
         <p>두 사람의 새로운 출발을 축하해 주세요.</p>
         <form id="message-form">
-          <label for="nickname">닉네임</label>
-          <input type="text" id="nickname" name="nickname" maxlength="10" />
-          <p id="name-count" aria-live="polite">0 / 10</p>
-
-          <label for="content">따뜻한 축하의 한마디를 남겨주세요!</label>
-          <textarea id="content" name="content"></textarea>
-
           <label class="agree-row">
             <input type="checkbox" id="agree-check" />
-            개인정보 처리방침에 동의합니다.
+            개인정보 수집에 동의합니다.
           </label>
-
-          <button type="submit" id="submit-btn">메세지 남기기</button>
+          <button type="submit" id="submit-btn" disabled>메시지 보내기</button>
         </form>
+      </section>
 
-        <p id="notice" aria-live="polite">
-          닉네임과 축하의 한마디를 입력해주세요.
+      <dialog
+        id="send-message-dialog"
+        aria-labelledby="send-message-title"
+        aria-describedby="send-message-description"
+      >
+        <h3 id="send-message-title">개인정보 수집에 동의하시겠어요?</h3>
+        <p id="send-message-description">
+          축하 메시지 작성에 필요한 정보를 수집합니다.
         </p>
+        <div class="dialog-actions">
+          <button id="send-message-cancel" type="button">돌아가기</button>
+          <button id="send-message-confirm" type="button">
+            동의하고 메시지 남기기
+          </button>
+        </div>
+      </dialog>
+
+      <section id="send-message-flow" class="send-message-flow" hidden>
+        <h2>축하 메시지 작성</h2>
+        <p class="progress" aria-label="축하 메시지 진행 단계">
+          <span class="progress__item">1. 닉네임 입력</span>
+          <span class="progress__item">2. 관계</span>
+          <span class="progress__item">3. 메시지</span>
+          <span class="progress__item">4. 확인</span>
+        </p>
+
+        <section class="step" data-step="1" hidden>
+          <h3>이름 또는 닉네임을 입력해 주세요.</h3>
+          <label for="flow-nickname">이름 또는 닉네임</label>
+          <input
+            id="flow-nickname"
+            type="text"
+            maxlength="10"
+            placeholder="예: 홍길동 또는 길동이"
+            aria-describedby="nickname-error"
+          />
+          <p id="nickname-error" class="error-message" aria-live="polite"></p>
+          <button id="nickname-next" type="button">
+            신랑♥신부 관계 선택하기
+          </button>
+        </section>
+
+        <section class="step" data-step="2" hidden>
+          <h3>신랑·신부와의 관계를 알려 주세요.</h3>
+          <fieldset>
+            <legend>관계</legend>
+            <label
+              ><input type="radio" name="relation" value="신랑" /> 신랑</label
+            >
+            <label
+              ><input type="radio" name="relation" value="신부" /> 신부</label
+            >
+          </fieldset>
+          <p id="relation-error" class="error-message" aria-live="polite"></p>
+
+          <label for="detail-relation">세부 관계</label>
+          <select id="detail-relation">
+            <option value="">선택해 주세요</option>
+            <option value="가족">가족</option>
+            <option value="친구/지인">친구/지인</option>
+            <option value="회사 동료">회사 동료</option>
+            <option value="기타">기타</option>
+          </select>
+          <input
+            id="other-relation"
+            type="text"
+            maxlength="20"
+            aria-label="기타 관계"
+            placeholder="관계를 입력해 주세요"
+            hidden
+          />
+          <p id="detail-error" class="error-message" aria-live="polite"></p>
+
+          <div class="step-actions">
+            <button id="option-prev" type="button">이전</button>
+            <button id="option-next" type="button">축하 메시지 입력하기</button>
+          </div>
+        </section>
+
+        <section class="step" data-step="3" hidden>
+          <h3>축하 메시지를 입력해 주세요.</h3>
+          <label for="congratulation-message">축하 메시지</label>
+          <textarea
+            id="congratulation-message"
+            maxlength="300"
+            aria-describedby="message-count message-error"
+          ></textarea>
+          <p id="message-count" class="character-count" aria-live="polite">
+            0 / 300
+          </p>
+          <p id="message-error" class="error-message" aria-live="polite"></p>
+
+          <div class="step-actions">
+            <button id="message-prev" type="button">이전</button>
+            <button id="message-next" type="button">내용 확인하기</button>
+          </div>
+        </section>
+
+        <section class="step" data-step="4" hidden>
+          <h3>입력한 내용을 확인해 주세요.</h3>
+
+          <div class="summary-list">
+            <div>
+              <span>이름 및 닉네임</span><strong id="summary-nickname"></strong>
+            </div>
+            <div><span>관계</span><strong id="summary-relation"></strong></div>
+            <div>
+              <span>세부관계</span
+              ><strong id="summary-detail-relation"></strong>
+            </div>
+            <div>
+              <span>축하 메시지</span><strong id="summary-message"></strong>
+            </div>
+          </div>
+
+          <div class="step-actions">
+            <button id="summary-prev" type="button">수정하기</button>
+            <button id="finish-button" type="button">메시지 전송하기</button>
+          </div>
+        </section>
+
+        <section class="step complete-step" data-step="5" hidden>
+          <h3>축하 메시지 전송이 완료되었습니다!</h3>
+          <p>
+            축하 메시지를 성공적으로 전송했습니다. 축하에 동참해 주셔서
+            감사합니다!
+          </p>
+          <button id="resend-button" type="button">다시 보내기</button>
+        </section>
       </section>
     </main>
 
