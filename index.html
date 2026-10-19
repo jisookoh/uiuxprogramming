@@ -13,7 +13,7 @@
     />
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
+  <body class="dark">
     <!-- 
       사용자: 결혼을 앞둔 예비 신혼부부
       목적: 청첩장을 직접 전달하지 못한 사람들에게 전달할 모바일 청첩장
@@ -22,7 +22,15 @@
     -->
     <header>
       <div class="theme-toggle">
-        <button id="theme-button" type="button">다크</button>
+        <button
+          id="theme-button"
+          class="theme-button"
+          type="button"
+          aria-label="라이트 모드로 변경"
+          title="라이트 모드로 변경"
+        >
+          <img id="theme-icon" src="./assets/icons/sun.svg" alt="" />
+        </button>
       </div>
 
       <nav aria-label="주요 메뉴">

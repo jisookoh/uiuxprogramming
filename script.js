@@ -1,10 +1,14 @@
 const $themeButton = document.querySelector("#theme-button");
+const $themeIcon = document.querySelector("#theme-icon");
 const $tabs = document.querySelectorAll(".tab");
 const $panels = document.querySelectorAll(".panel");
 
 $themeButton.addEventListener("click", () => {
   const isDark = document.body.classList.toggle("dark");
-  $themeButton.textContent = isDark ? "라이트" : "다크";
+
+  $themeIcon.src = isDark
+    ? "./assets/icons/sun.svg"
+    : "./assets/icons/moon.svg";
 });
 
 $tabs.forEach((tab) => {
