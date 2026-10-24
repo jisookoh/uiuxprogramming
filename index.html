@@ -37,7 +37,7 @@
         <a href="#intro">Home</a>
         <a href="#our-history">Our History</a>
         <a href="#directions">오시는길</a>
-        <a href="#send-messages">축하메세지</a>
+        <a href="#send-messages">방명록</a>
       </nav>
     </header>
 
@@ -157,44 +157,65 @@
       </section>
 
       <section id="send-messages" class="messages-card">
-        <h2>축하 메시지</h2>
-        <p>두 사람의 새로운 출발을 축하해 주세요.</p>
-        <form id="message-form">
-          <label class="agree-row">
-            <input type="checkbox" id="agree-check" />
-            개인정보 수집에 동의합니다.
-          </label>
-          <button type="submit" id="submit-btn" disabled>메시지 보내기</button>
-        </form>
-      </section>
-
-      <dialog
-        id="send-message-dialog"
-        aria-labelledby="send-message-title"
-        aria-describedby="send-message-description"
-      >
-        <h3 id="send-message-title">개인정보 수집에 동의하시겠어요?</h3>
-        <p id="send-message-description">
-          축하 메시지 작성에 필요한 정보를 수집합니다.
-        </p>
-        <div class="dialog-actions">
-          <button id="send-message-cancel" type="button">돌아가기</button>
-          <button id="send-message-confirm" type="button">
-            동의하고 메시지 남기기
+        <div class="messages-title-row">
+          <h2>방명록</h2>
+          <button id="open-message-button" class="small-button" type="button">
+            방명록 남기기
           </button>
         </div>
-      </dialog>
+        <p>두 사람의 새로운 출발을 축하해 주세요.</p>
 
-      <section id="send-message-flow" class="send-message-flow" hidden>
-        <h2>축하 메시지 작성</h2>
-        <p class="progress" aria-label="축하 메시지 진행 단계">
-          <span class="progress__item">1. 닉네임 입력</span>
-          <span class="progress__item">2. 관계</span>
-          <span class="progress__item">3. 메시지</span>
-          <span class="progress__item">4. 확인</span>
-        </p>
+        <ul id="guestbook-list" class="guestbook-list" aria-live="polite">
+          <li class="guestbook-item">
+            <div class="guestbook-meta">
+              <strong>향단이</strong>
+              <span>신부 · 친구/지인</span>
+            </div>
+            <p>두 분의 결혼을 진심으로 축하해요. 오래오래 행복하세요!</p>
+          </li>
+          <li class="guestbook-item">
+            <div class="guestbook-meta">
+              <strong>방자</strong>
+              <span>신랑 · 친구/지인</span>
+            </div>
+            <p>멋진 두 사람의 새로운 시작을 응원합니다!</p>
+          </li>
+        </ul>
 
-        <section class="step" data-step="1" hidden>
+      </section>
+
+      <dialog id="send-message-dialog" aria-labelledby="send-message-title">
+        <button
+          id="dialog-close-button"
+          class="dialog-close-button"
+          type="button"
+          aria-label="모달 닫기"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+        <div id="send-message-flow" class="send-message-flow">
+          <h2 id="send-message-title">방명록 남기기</h2>
+          <p class="progress" aria-label="방명록 작성 진행 단계" hidden>
+            <span class="progress__item"><strong>1</strong><span>닉네임</span></span>
+            <span class="progress__item"><strong>2</strong><span>관계</span></span>
+            <span class="progress__item"><strong>3</strong><span>메시지</span></span>
+            <span class="progress__item"><strong>4</strong><span>확인</span></span>
+          </p>
+
+          <section class="step agree-step" data-step="0">
+            <h3>정보 수집에 동의해 주세요.</h3>
+            <p>방명록 작성에 필요한 이름과 관계, 메시지를 수집합니다.</p>
+            <label class="agree-row">
+              <input type="checkbox" id="agree-check" />
+              정보 수집에 동의합니다.
+            </label>
+            <div class="step-actions">
+              <button id="send-message-cancel" type="button">닫기</button>
+              <button id="agree-next" type="button" disabled>다음</button>
+            </div>
+          </section>
+
+          <section class="step" data-step="1" hidden>
           <h3>이름 또는 닉네임을 입력해 주세요.</h3>
           <label for="flow-nickname">이름 또는 닉네임</label>
           <input
@@ -208,9 +229,9 @@
           <button id="nickname-next" type="button">
             신랑♥신부 관계 선택하기
           </button>
-        </section>
+          </section>
 
-        <section class="step" data-step="2" hidden>
+          <section class="step" data-step="2" hidden>
           <h3>신랑·신부와의 관계를 알려 주세요.</h3>
           <fieldset>
             <legend>관계</legend>
@@ -245,9 +266,9 @@
             <button id="option-prev" type="button">이전</button>
             <button id="option-next" type="button">축하 메시지 입력하기</button>
           </div>
-        </section>
+          </section>
 
-        <section class="step" data-step="3" hidden>
+          <section class="step" data-step="3" hidden>
           <h3>축하 메시지를 입력해 주세요.</h3>
           <label for="congratulation-message">축하 메시지</label>
           <textarea
@@ -264,9 +285,9 @@
             <button id="message-prev" type="button">이전</button>
             <button id="message-next" type="button">내용 확인하기</button>
           </div>
-        </section>
+          </section>
 
-        <section class="step" data-step="4" hidden>
+          <section class="step" data-step="4" hidden>
           <h3>입력한 내용을 확인해 주세요.</h3>
 
           <div class="summary-list">
@@ -275,8 +296,7 @@
             </div>
             <div><span>관계</span><strong id="summary-relation"></strong></div>
             <div>
-              <span>세부관계</span
-              ><strong id="summary-detail-relation"></strong>
+              <span>세부관계</span><strong id="summary-detail-relation"></strong>
             </div>
             <div>
               <span>축하 메시지</span><strong id="summary-message"></strong>
@@ -285,19 +305,19 @@
 
           <div class="step-actions">
             <button id="summary-prev" type="button">수정하기</button>
-            <button id="finish-button" type="button">메시지 전송하기</button>
+            <button id="finish-button" type="button">방명록 등록하기</button>
           </div>
-        </section>
+          </section>
 
-        <section class="step complete-step" data-step="5" hidden>
-          <h3>축하 메시지 전송이 완료되었습니다!</h3>
-          <p>
-            축하 메시지를 성공적으로 전송했습니다. 축하에 동참해 주셔서
-            감사합니다!
-          </p>
-          <button id="resend-button" type="button">다시 보내기</button>
-        </section>
-      </section>
+          <section class="step complete-step" data-step="5" hidden>
+            <h3>방명록이 등록되었습니다!</h3>
+            <p>작성한 메시지가 방명록 아래에 추가되었습니다.</p>
+            <button id="guestbook-close-button" type="button">
+              방명록 확인하기
+            </button>
+          </section>
+        </div>
+      </dialog>
     </main>
 
     <footer>
