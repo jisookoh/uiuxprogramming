@@ -100,13 +100,20 @@
           </button>
         </div>
 
+        <p class="history-guide">사진을 클릭하면 더 크게 볼 수 있어요.</p>
+
         <div
           id="history-first-meet"
           class="panel is-active"
           role="tabpanel"
           aria-labelledby="tab-first-meet"
         >
-          <img src="./assets/images/gallary_1.png" alt="처음 만난 날" />
+          <img
+            class="history-image"
+            src="./assets/images/gallary_1.png"
+            alt="처음 만난 날"
+            title="사진 크게 보기"
+          />
           <h3>처음 만난 날</h3>
         </div>
 
@@ -117,7 +124,12 @@
           aria-labelledby="tab-a-year"
           hidden
         >
-          <img src="./assets/images/gallary_2.png" alt="첫 1주년" />
+          <img
+            class="history-image"
+            src="./assets/images/gallary_2.png"
+            alt="첫 1주년"
+            title="사진 크게 보기"
+          />
           <h3>첫 1주년</h3>
         </div>
 
@@ -128,7 +140,12 @@
           aria-labelledby="tab-propose"
           hidden
         >
-          <img src="./assets/images/gallary_3.png" alt="프로포즈" />
+          <img
+            class="history-image"
+            src="./assets/images/gallary_3.png"
+            alt="프로포즈"
+            title="사진 크게 보기"
+          />
           <h3>프로포즈</h3>
         </div>
 
@@ -139,10 +156,31 @@
           aria-labelledby="tab-wedding"
           hidden
         >
-          <img src="./assets/images/gallary_4.png" alt="웨딩 사진" />
+          <img
+            class="history-image"
+            src="./assets/images/gallary_4.png"
+            alt="웨딩 사진"
+            title="사진 크게 보기"
+          />
           <h3>웨딩 사진</h3>
         </div>
       </section>
+
+      <dialog
+        id="history-image-dialog"
+        class="history-image-dialog"
+        aria-label="사진 크게 보기"
+      >
+        <button
+          id="history-image-close"
+          class="dialog-close-button"
+          type="button"
+          aria-label="사진 닫기"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+        <img id="history-large-image" alt="" />
+      </dialog>
 
       <section id="directions">
         <h2>오시는 길</h2>
@@ -181,7 +219,6 @@
             <p>멋진 두 사람의 새로운 시작을 응원합니다!</p>
           </li>
         </ul>
-
       </section>
 
       <dialog id="send-message-dialog" aria-labelledby="send-message-title">
@@ -196,10 +233,18 @@
         <div id="send-message-flow" class="send-message-flow">
           <h2 id="send-message-title">방명록 남기기</h2>
           <p class="progress" aria-label="방명록 작성 진행 단계" hidden>
-            <span class="progress__item"><strong>1</strong><span>닉네임</span></span>
-            <span class="progress__item"><strong>2</strong><span>관계</span></span>
-            <span class="progress__item"><strong>3</strong><span>메시지</span></span>
-            <span class="progress__item"><strong>4</strong><span>확인</span></span>
+            <span class="progress__item"
+              ><strong>1</strong><span>닉네임</span></span
+            >
+            <span class="progress__item"
+              ><strong>2</strong><span>관계</span></span
+            >
+            <span class="progress__item"
+              ><strong>3</strong><span>메시지</span></span
+            >
+            <span class="progress__item"
+              ><strong>4</strong><span>확인</span></span
+            >
           </p>
 
           <section class="step agree-step" data-step="0">
@@ -216,97 +261,103 @@
           </section>
 
           <section class="step" data-step="1" hidden>
-          <h3>이름 또는 닉네임을 입력해 주세요.</h3>
-          <label for="flow-nickname">이름 또는 닉네임</label>
-          <input
-            id="flow-nickname"
-            type="text"
-            maxlength="10"
-            placeholder="예: 홍길동 또는 길동이"
-            aria-describedby="nickname-error"
-          />
-          <p id="nickname-error" class="error-message" aria-live="polite"></p>
-          <button id="nickname-next" type="button">
-            신랑♥신부 관계 선택하기
-          </button>
+            <h3>이름 또는 닉네임을 입력해 주세요.</h3>
+            <label for="flow-nickname">이름 또는 닉네임</label>
+            <input
+              id="flow-nickname"
+              type="text"
+              maxlength="10"
+              placeholder="예: 홍길동 또는 길동이"
+              aria-describedby="nickname-error"
+            />
+            <p id="nickname-error" class="error-message" aria-live="polite"></p>
+            <button id="nickname-next" type="button">
+              신랑♥신부 관계 선택하기
+            </button>
           </section>
 
           <section class="step" data-step="2" hidden>
-          <h3>신랑·신부와의 관계를 알려 주세요.</h3>
-          <fieldset>
-            <legend>관계</legend>
-            <label
-              ><input type="radio" name="relation" value="신랑" /> 신랑</label
-            >
-            <label
-              ><input type="radio" name="relation" value="신부" /> 신부</label
-            >
-          </fieldset>
-          <p id="relation-error" class="error-message" aria-live="polite"></p>
+            <h3>신랑·신부와의 관계를 알려 주세요.</h3>
+            <fieldset>
+              <legend>관계</legend>
+              <label
+                ><input type="radio" name="relation" value="신랑" /> 신랑</label
+              >
+              <label
+                ><input type="radio" name="relation" value="신부" /> 신부</label
+              >
+            </fieldset>
+            <p id="relation-error" class="error-message" aria-live="polite"></p>
 
-          <label for="detail-relation">세부 관계</label>
-          <select id="detail-relation">
-            <option value="">선택해 주세요</option>
-            <option value="가족">가족</option>
-            <option value="친구/지인">친구/지인</option>
-            <option value="회사 동료">회사 동료</option>
-            <option value="기타">기타</option>
-          </select>
-          <input
-            id="other-relation"
-            type="text"
-            maxlength="20"
-            aria-label="기타 관계"
-            placeholder="관계를 입력해 주세요"
-            hidden
-          />
-          <p id="detail-error" class="error-message" aria-live="polite"></p>
+            <label for="detail-relation">세부 관계</label>
+            <select id="detail-relation">
+              <option value="">선택해 주세요</option>
+              <option value="가족">가족</option>
+              <option value="친구/지인">친구/지인</option>
+              <option value="회사 동료">회사 동료</option>
+              <option value="기타">기타</option>
+            </select>
+            <input
+              id="other-relation"
+              type="text"
+              maxlength="20"
+              aria-label="기타 관계"
+              placeholder="관계를 입력해 주세요"
+              hidden
+            />
+            <p id="detail-error" class="error-message" aria-live="polite"></p>
 
-          <div class="step-actions">
-            <button id="option-prev" type="button">이전</button>
-            <button id="option-next" type="button">축하 메시지 입력하기</button>
-          </div>
+            <div class="step-actions">
+              <button id="option-prev" type="button">이전</button>
+              <button id="option-next" type="button">
+                축하 메시지 입력하기
+              </button>
+            </div>
           </section>
 
           <section class="step" data-step="3" hidden>
-          <h3>축하 메시지를 입력해 주세요.</h3>
-          <label for="congratulation-message">축하 메시지</label>
-          <textarea
-            id="congratulation-message"
-            maxlength="300"
-            aria-describedby="message-count message-error"
-          ></textarea>
-          <p id="message-count" class="character-count" aria-live="polite">
-            0 / 300
-          </p>
-          <p id="message-error" class="error-message" aria-live="polite"></p>
+            <h3>축하 메시지를 입력해 주세요.</h3>
+            <label for="congratulation-message">축하 메시지</label>
+            <textarea
+              id="congratulation-message"
+              maxlength="300"
+              aria-describedby="message-count message-error"
+            ></textarea>
+            <p id="message-count" class="character-count" aria-live="polite">
+              0 / 300
+            </p>
+            <p id="message-error" class="error-message" aria-live="polite"></p>
 
-          <div class="step-actions">
-            <button id="message-prev" type="button">이전</button>
-            <button id="message-next" type="button">내용 확인하기</button>
-          </div>
+            <div class="step-actions">
+              <button id="message-prev" type="button">이전</button>
+              <button id="message-next" type="button">내용 확인하기</button>
+            </div>
           </section>
 
           <section class="step" data-step="4" hidden>
-          <h3>입력한 내용을 확인해 주세요.</h3>
+            <h3>입력한 내용을 확인해 주세요.</h3>
 
-          <div class="summary-list">
-            <div>
-              <span>이름 및 닉네임</span><strong id="summary-nickname"></strong>
+            <div class="summary-list">
+              <div>
+                <span>이름 및 닉네임</span
+                ><strong id="summary-nickname"></strong>
+              </div>
+              <div>
+                <span>관계</span><strong id="summary-relation"></strong>
+              </div>
+              <div>
+                <span>세부관계</span
+                ><strong id="summary-detail-relation"></strong>
+              </div>
+              <div>
+                <span>축하 메시지</span><strong id="summary-message"></strong>
+              </div>
             </div>
-            <div><span>관계</span><strong id="summary-relation"></strong></div>
-            <div>
-              <span>세부관계</span><strong id="summary-detail-relation"></strong>
-            </div>
-            <div>
-              <span>축하 메시지</span><strong id="summary-message"></strong>
-            </div>
-          </div>
 
-          <div class="step-actions">
-            <button id="summary-prev" type="button">수정하기</button>
-            <button id="finish-button" type="button">방명록 등록하기</button>
-          </div>
+            <div class="step-actions">
+              <button id="summary-prev" type="button">수정하기</button>
+              <button id="finish-button" type="button">방명록 등록하기</button>
+            </div>
           </section>
 
           <section class="step complete-step" data-step="5" hidden>

@@ -401,6 +401,49 @@ body.dark .panel {
   border-color: #55443c;
 }
 
+.history-guide {
+  margin: 0 0 10px;
+  color: #9a6844;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+body.dark .history-guide {
+  color: #d8aa7b;
+}
+
+.history-image {
+  cursor: pointer;
+}
+
+.history-image-dialog {
+  position: fixed;
+  inset: 0;
+  width: min(900px, calc(100% - 32px));
+  max-width: none;
+  max-height: calc(100vh - 32px);
+  padding: 56px 16px 16px;
+  margin: auto;
+  border: 1px solid #ded0c3;
+  border-radius: 12px;
+  background-color: #fbf7f2;
+}
+
+.history-image-dialog::backdrop {
+  background: #211b18dd;
+}
+
+.history-image-dialog #history-large-image {
+  width: 100%;
+  max-height: calc(100vh - 104px);
+  object-fit: contain;
+}
+
+body.dark .history-image-dialog {
+  background-color: #342a25;
+  border-color: #5b463b;
+}
+
 #send-message-dialog {
   position: fixed;
   inset: 0;
@@ -539,6 +582,11 @@ body.dark .dialog-close-button:hover {
 .send-message-flow textarea {
   width: 100%;
 }
+
+#other-relation {
+  margin-top: 12px;
+}
+
 .send-message-flow fieldset {
   display: flex;
   gap: 16px;

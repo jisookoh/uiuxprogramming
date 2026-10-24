@@ -2,6 +2,10 @@ const $themeButton = document.querySelector("#theme-button");
 const $themeIcon = document.querySelector("#theme-icon");
 const $tabs = document.querySelectorAll(".tab");
 const $panels = document.querySelectorAll(".panel");
+const $historyImages = document.querySelectorAll(".history-image");
+const $historyImageDialog = document.querySelector("#history-image-dialog");
+const $historyLargeImage = document.querySelector("#history-large-image");
+const $historyImageClose = document.querySelector("#history-image-close");
 
 $themeButton.addEventListener("click", () => {
   const isDark = document.body.classList.toggle("dark");
@@ -27,6 +31,18 @@ $tabs.forEach((tab) => {
     $panel.classList.add("is-active");
     $panel.hidden = false;
   });
+});
+
+$historyImages.forEach((image) => {
+  image.addEventListener("click", () => {
+    $historyLargeImage.src = image.src;
+    $historyLargeImage.alt = image.alt;
+    $historyImageDialog.showModal();
+  });
+});
+
+$historyImageClose.addEventListener("click", () => {
+  $historyImageDialog.close();
 });
 
 const $openMessageButton = document.querySelector("#open-message-button");
@@ -227,7 +243,4 @@ document
   .querySelector("#guestbook-close-button")
   .addEventListener("click", () => {
     $sendMessageDialog.close();
-    document.querySelector("#send-messages").scrollIntoView({
-      behavior: "smooth",
-    });
   });
