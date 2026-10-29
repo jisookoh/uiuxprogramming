@@ -230,7 +230,11 @@
         >
           <span aria-hidden="true">×</span>
         </button>
-        <div id="send-message-flow" class="send-message-flow">
+        <form
+          id="send-message-flow"
+          class="send-message-flow"
+          aria-busy="false"
+        >
           <h2 id="send-message-title">방명록 남기기</h2>
           <p class="progress" aria-label="방명록 작성 진행 단계" hidden>
             <span class="progress__item"
@@ -265,6 +269,7 @@
             <label for="flow-nickname">이름 또는 닉네임</label>
             <input
               id="flow-nickname"
+              class="required-field"
               type="text"
               maxlength="10"
               placeholder="예: 홍길동 또는 길동이"
@@ -290,7 +295,7 @@
             <p id="relation-error" class="error-message" aria-live="polite"></p>
 
             <label for="detail-relation">세부 관계</label>
-            <select id="detail-relation">
+            <select id="detail-relation" class="required-field" name="relation">
               <option value="">선택해 주세요</option>
               <option value="가족">가족</option>
               <option value="친구/지인">친구/지인</option>
@@ -299,6 +304,7 @@
             </select>
             <input
               id="other-relation"
+              class="required-field"
               type="text"
               maxlength="20"
               aria-label="기타 관계"
@@ -315,18 +321,32 @@
             </div>
           </section>
 
-          <section class="step" data-step="3" hidden>
+          <section class="step" data-step="3" hidden id="messages-field">
             <h3>축하 메시지를 입력해 주세요.</h3>
             <label for="congratulation-message">축하 메시지</label>
             <textarea
               id="congratulation-message"
+              class="textarea required-field"
               maxlength="300"
-              aria-describedby="message-count message-error"
+              minlength="0"
+              required
+              aria-describedby="message-helper message-count message-error"
             ></textarea>
-            <p id="message-count" class="character-count" aria-live="polite">
-              0 / 300
-            </p>
-            <p id="message-error" class="error-message" aria-live="polite"></p>
+            <div class="field-meta">
+              <p id="message-helper" class="helper-message">
+                10자 이상 300자 이하로 입력해 주세요.
+              </p>
+              <p id="message-count" class="character-count" aria-live="polite">
+                0 / 300자
+              </p>
+            </div>
+
+            <p
+              id="message-error"
+              class="error-message"
+              aria-live="polite"
+              role="alert"
+            ></p>
 
             <div class="step-actions">
               <button id="message-prev" type="button">이전</button>
@@ -356,18 +376,28 @@
 
             <div class="step-actions">
               <button id="summary-prev" type="button">수정하기</button>
-              <button id="finish-button" type="button">방명록 등록하기</button>
+              <button id="finish-button" type="submit">
+                방명록 등록하기
+              </button>
             </div>
+            <p
+              id="submit-status"
+              class="submit-status"
+              role="status"
+              aria-live="polite"
+            ></p>
           </section>
 
           <section class="step complete-step" data-step="5" hidden>
             <h3>방명록이 등록되었습니다!</h3>
-            <p>작성한 메시지가 방명록 아래에 추가되었습니다.</p>
+            <p id="complete-message">
+              작성한 메시지가 방명록 아래에 추가되었습니다.
+            </p>
             <button id="guestbook-close-button" type="button">
               방명록 확인하기
             </button>
           </section>
-        </div>
+        </form>
       </dialog>
     </main>
 

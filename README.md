@@ -1,3 +1,31 @@
+# 모바일 청첩장 — 9주차 form validate 과제
+
+## 추가·수정한 기능
+
+- 방명록 입력 화면을 <form>으로 구성하고 단계별 검증을 추가했다.
+- 필수 입력의 성공·오류 상태를 색상, 도움말, 글자 수로 표시한다.
+- 등록 중 상태와 성공·실패 메시지를 제공한다.
+- 등록한 방명록을 localStorage에 저장하고 다시 화면에 표시한다.
+- 라이트·다크 모드의 공통 색상을 CSS 변수로 정리했다.
+
+## 입력 조건
+
+- 개인정보 수집에 동의해야 한다.
+- 닉네임, 신랑·신부 관계, 세부 관계를 입력해야 한다.
+- 세부 관계가 기타이면 기타 관계를 추가로 입력해야 한다.
+- 축하 메시지는 10자 이상 300자 이하로 입력해야 한다.
+
+## 확인 순서
+
+동의 → 닉네임 → 관계 → 축하 메시지 → 입력 내용 확인 → 방명록 등록 순서로 확인한다.
+
+## 실패 처리
+
+- 입력 오류는 validateNickname(), validateRelation(), validateMessage()에서 검증하고 다음 단계 이동을 막는다.
+- 저장 실패는 saveGuestbookEntries()의 반환값을 확인해 setSubmitState("error", ...)로 화면에 표시한다.
+
+<!-- 기존 README 내용
+
 # 모바일 청첩장
 
 ## 사용자와 목표
@@ -51,3 +79,5 @@
 
 - GitHub 저장소: [https://github.com/jisookoh/uiuxprogramming](https://github.com/jisookoh/uiuxprogramming)
 - 배포된 웹페이지: [https://jisookoh.github.io/uiuxprogramming/](https://jisookoh.github.io/uiuxprogramming/)
+
+-->
