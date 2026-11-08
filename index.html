@@ -33,11 +33,23 @@
         </button>
       </div>
 
-      <nav aria-label="주요 메뉴">
-        <a href="#intro">Home</a>
-        <a href="#our-history">Our History</a>
-        <a href="#directions">오시는길</a>
-        <a href="#send-messages">방명록</a>
+      <button
+        id="menu-toggle"
+        class="menu-toggle"
+        type="button"
+        aria-controls="main-nav"
+        aria-expanded="false"
+      >
+        메뉴열기
+      </button>
+
+      <nav id="main-nav" class="main-nav" aria-label="주요 메뉴">
+        <ul>
+          <li><a href="#intro">Home</a></li>
+          <li><a href="#our-history">Our History</a></li>
+          <li><a href="#directions">오시는길</a></li>
+          <li><a href="#send-messages">방명록</a></li>
+        </ul>
       </nav>
     </header>
 
@@ -203,11 +215,38 @@
         </div>
         <p>두 사람의 새로운 출발을 축하해 주세요.</p>
 
+        <div class="filters" role="group" aria-label="방명록 표시 범위">
+          <button
+            class="filter-button is-active"
+            type="button"
+            data-filter="all"
+            aria-pressed="true"
+          >
+            전체
+          </button>
+          <button
+            class="filter-button"
+            type="button"
+            data-filter="male"
+            aria-pressed="false"
+          >
+            신랑
+          </button>
+          <button
+            class="filter-button"
+            type="button"
+            data-filter="female"
+            aria-pressed="false"
+          >
+            신부
+          </button>
+        </div>
+
         <ul id="guestbook-list" class="guestbook-list" aria-live="polite">
           <li class="guestbook-item">
             <div class="guestbook-meta">
               <strong>향단이</strong>
-              <span>신부 · 친구/지인</span>
+              <span>신랑 · 친구/지인</span>
             </div>
             <p>두 분의 결혼을 진심으로 축하해요. 오래오래 행복하세요!</p>
           </li>
@@ -376,9 +415,7 @@
 
             <div class="step-actions">
               <button id="summary-prev" type="button">수정하기</button>
-              <button id="finish-button" type="submit">
-                방명록 등록하기
-              </button>
+              <button id="finish-button" type="submit">방명록 등록하기</button>
             </div>
             <p
               id="submit-status"

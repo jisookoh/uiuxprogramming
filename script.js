@@ -76,9 +76,32 @@ const $messageHelper = document.querySelector("#message-helper");
 const $messageCount = document.querySelector("#message-count");
 const $messageError = document.querySelector("#message-error");
 
+const navLinks = document.querySelectorAll(".main-nav a");
+const menuToggle = document.querySelector("#menu-toggle");
+const mainNav = document.querySelector("#main-nav");
+const filterButtons = document.querySelectorAll(".filter-button");
+let currentFilter = "all";
+
 const GUESTBOOK_STORAGE_KEY = "wedding-guestbook-entries";
 const formData = {};
 let guestbookEntries = loadGuestbookEntries();
+
+// 방명록 빈 상태
+const emptyState = document.createElement("li");
+const emptyTitle = document.createElement("h3");
+const emptyDescription = document.createElement("p");
+const emptyAction = document.createElement("button");
+
+emptyState.className = "guestbook-empty";
+emptyState.style.cssText =
+  "list-style:none;text-align:center;padding:32px 16px;";
+emptyState.hidden = true;
+emptyAction.type = "button";
+emptyAction.className = "small-button";
+emptyAction.textContent = "방명록 남기기";
+emptyAction.addEventListener("click", () => $openMessageButton.click());
+emptyState.append(emptyTitle, emptyDescription, emptyAction);
+$guestbookList.append(emptyState);
 
 function showStep(index) {
   currentStep = index;
@@ -343,12 +366,99 @@ function addGuestbookItem(guestbookEntry) {
   $guestbookList.append($item);
 }
 
+function updateCurrentNav() {
+  const currentHash = window.location.hash;
+
+  navLinks.forEach((link) => {
+    const current = currentHash
+      ? link.getAttribute("href") === currentHash
+      : link === navLinks[0];
+
+    link.classList.toggle("is-current", current);
+
+    if (current) {
+      link.setAttribute("aria-current", "page");
+    } else {
+      link.removeAttribute("aria-current");
+    }
+  });
+}
+
+window.addEventListener("hashchange", updateCurrentNav);
+updateCurrentNav();
+
+menuToggle.addEventListener("click", () => {
+  const isOpen = mainNav.classList.toggle("is-open");
+
+  menuToggle.textContent = isOpen ? "메뉴 닫기" : "메뉴 열기";
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
+});
+
+navLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    mainNav.classList.toggle("is-open");
+    menuToggle.textContent = "메뉴 열기";
+    menuToggle.setAttribute("aria-expanded", "false");
+  });
+});
+
+function getVisibleGuestbook() {
+  return guestbookEntries.filter((guestbook) => {
+    if (currentFilter === "all") return true;
+    return guestbook.relation === (currentFilter === "male" ? "신랑" : "신부");
+  });
+}
+
 function renderGuestbookEntries() {
+  const visibleGuestbook = getVisibleGuestbook();
+
   $guestbookList
     .querySelectorAll("[data-guestbook-entry]")
     .forEach((item) => item.remove());
-  guestbookEntries.forEach(addGuestbookItem);
+
+  let visibleCount = visibleGuestbook.length;
+
+  $guestbookList
+    .querySelectorAll(".guestbook-item:not([data-guestbook-entry])")
+    .forEach((item) => {
+      const relation =
+        item.querySelector(".guestbook-meta span")?.textContent ?? "";
+
+      const visible =
+        currentFilter === "all" ||
+        relation.startsWith(currentFilter === "male" ? "신랑" : "신부");
+
+      item.style.display = visible ? "" : "none";
+      if (visible) visibleCount++;
+    });
+
+  visibleGuestbook.forEach(addGuestbookItem);
+
+  const isEmpty = visibleCount === 0;
+  const selected = currentFilter === "male" ? "신랑" : "신부";
+
+  emptyTitle.textContent =
+    currentFilter === "all"
+      ? "아직 작성된 방명록이 없어요."
+      : `${selected}에게 남긴 방명록이 없어요.`;
+
+  emptyDescription.textContent = "첫 번째 축하 메시지를 남겨주세요.";
+  emptyState.hidden = !isEmpty;
+  emptyState.style.display = isEmpty ? "" : "none";
 }
+
+filterButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    currentFilter = button.dataset.filter;
+
+    filterButtons.forEach((item) => {
+      const selected = item === button;
+      item.classList.toggle("is-active", selected);
+      item.setAttribute("aria-pressed", String(selected));
+    });
+    renderGuestbookEntries();
+  });
+});
 
 function saveCurrentGuestbookEntry() {
   const guestbookEntry = {

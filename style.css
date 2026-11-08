@@ -97,15 +97,21 @@ footer {
 }
 
 header {
-  padding-top: 48px;
-  padding-bottom: 32px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: var(--backdrop-strong);
 }
 
 .theme-toggle {
   display: flex;
   justify-content: flex-end;
   gap: 8px;
-  margin-bottom: 20px;
+  order: 2;
 }
 
 .theme-button {
@@ -154,17 +160,49 @@ img {
   border-radius: 16px;
 }
 
-nav {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 24px;
+.main-nav {
+  margin-right: auto;
+  order: 1;
 }
 
-nav a {
-  text-align: center;
+.main-nav ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.main-nav a {
   color: var(--primary);
+  font-size: 14px;
   font-weight: 700;
   text-decoration: none;
+  white-space: nowrap;
+}
+
+.main-nav a:hover {
+  color: var(--primary-hover);
+}
+
+.main-nav a.is-current {
+  color: var(--primary);
+  font-weight: 900;
+  border-bottom: 2px dashed var(--primary-hover);
+}
+
+.menu-toggle {
+  display: none;
+  margin-left: auto;
+  min-height: 40px;
+  padding: 7px 14px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background-color: var(--surface);
+  color: var(--ink);
+  font-weight: 700;
 }
 
 body.dark nav a {
@@ -797,26 +835,31 @@ body.dark .send-message-flow .summary-list > div {
   border-color: var(--line);
 }
 
+.filters {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.filter-button {
+  min-height: 42px;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.filter-button.is-active {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: #fff;
+}
+
 /*  웹 페이지가 표시되는 가로 폭이 620px 이하일 때만 적용 */
 @media (max-width: 620px) {
   body {
     font-size: 16px;
-  }
-
-  header {
-    padding-top: 32px;
-    padding-bottom: 24px;
-  }
-
-  nav {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0;
-  }
-
-  nav a {
-    padding: 8px 0;
-    text-align: left;
   }
 
   .tabs {
@@ -865,6 +908,43 @@ body.dark .send-message-flow .summary-list > div {
   input[type="checkbox"] {
     width: auto;
     min-height: auto;
+  }
+
+  header {
+    flex-wrap: wrap;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+    order: 2;
+    width: fit-content;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .main-nav {
+    display: none;
+    order: 3;
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .main-nav.is-open {
+    display: block;
+  }
+
+  .main-nav ul {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding-top: 10px;
+  }
+
+  .main-nav ul a {
+    display: block;
+    min-height: 44px;
+    padding: 10px 12px;
+    font-size: 14px;
   }
 
   .intro-card {
