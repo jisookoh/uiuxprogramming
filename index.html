@@ -20,6 +20,9 @@
       핵심 행동: 어디에서 결혼을 하는지에 대한 확인과 축하 메세지를 남길 수 있어야 함.
       정보 순서: 결혼 문구 visual -> 웨딩 사진 갤러리 -> 결혼식 위치 및 주소 -> 축하 메세지 작성
     -->
+
+    <a class="skip-link" href="#top">본문 바로가기</a>
+
     <header>
       <div class="theme-toggle">
         <button
@@ -53,7 +56,7 @@
       </nav>
     </header>
 
-    <main>
+    <main id="top" tabindex="-1">
       <section id="intro" class="intro-card">
         <h1>몽룡과 춘향,<br />저희 결혼합니다.</h1>
         <p>
@@ -114,7 +117,7 @@
 
         <p class="history-guide">사진을 클릭하면 더 크게 볼 수 있어요.</p>
 
-        <div
+        <figure
           id="history-first-meet"
           class="panel is-active"
           role="tabpanel"
@@ -123,13 +126,14 @@
           <img
             class="history-image"
             src="./assets/images/gallary_1.png"
-            alt="처음 만난 날"
-            title="사진 크게 보기"
+            alt="묭룡이와 춘향이가 호수 다리 위에서 처음 만나서 이야기 하는 사진"
+            title="묭룡이와 춘향이가 호수 다리 위에서 처음 만나서 이야기 하는 사진"
           />
           <h3>처음 만난 날</h3>
-        </div>
+          <figcaption>버드나무 아래서 처음 만난 날</figcaption>
+        </figure>
 
-        <div
+        <figure
           id="history-a-year"
           class="panel"
           role="tabpanel"
@@ -139,13 +143,14 @@
           <img
             class="history-image"
             src="./assets/images/gallary_2.png"
-            alt="첫 1주년"
-            title="사진 크게 보기"
+            alt="몽룡이와 춘향이가 카페에 앉아서 첫 1주년을 기념하는 사진, 앞으로도 오랫동안 함께해요라고 적혀있습니다"
+            title="몽룡이와 춘향이가 카페에 앉아서 첫 1주년을 기념하는 사진, 앞으로도 오랫동안 함께해요라고 적혀있습니다"
           />
           <h3>첫 1주년</h3>
-        </div>
+          <figcaption>카페에 앉아 1주년을 기념한 날</figcaption>
+        </figure>
 
-        <div
+        <figure
           id="history-propose"
           class="panel"
           role="tabpanel"
@@ -155,13 +160,14 @@
           <img
             class="history-image"
             src="./assets/images/gallary_3.png"
-            alt="프로포즈"
-            title="사진 크게 보기"
+            alt="몽룡이가 춘향이에게 한쪽 무릎을 꿇고 반지를 주면서 프로포즈하는 장면"
+            title="몽룡이가 춘향이에게 한쪽 무릎을 꿇고 반지를 주면서 프로포즈하는 장면"
           />
           <h3>프로포즈</h3>
-        </div>
+          <figcaption>연등 아래서 춘향이에게 프로포즈 하는 몽룡이</figcaption>
+        </figure>
 
-        <div
+        <figure
           id="history-wedding"
           class="panel"
           role="tabpanel"
@@ -171,11 +177,12 @@
           <img
             class="history-image"
             src="./assets/images/gallary_4.png"
-            alt="웨딩 사진"
-            title="사진 크게 보기"
+            alt="몽룡이와 춘향이가 결혼식날 예복을 입고 다정하게 있는 장면"
+            title="몽룡이와 춘향이가 결혼식날 예복을 입고 다정하게 있는 장면"
           />
           <h3>웨딩 사진</h3>
-        </div>
+          <figcaption>예복을 입고 다정하게 찍은 장면</figcaption>
+        </figure>
       </section>
 
       <dialog
@@ -187,7 +194,7 @@
           id="history-image-close"
           class="dialog-close-button"
           type="button"
-          aria-label="사진 닫기"
+          aria-label="사진 크게보기 닫기"
         >
           <span aria-hidden="true">×</span>
         </button>
@@ -265,7 +272,7 @@
           id="dialog-close-button"
           class="dialog-close-button"
           type="button"
-          aria-label="모달 닫기"
+          aria-label="방명록 작성 모달 닫기"
         >
           <span aria-hidden="true">×</span>
         </button>
@@ -375,9 +382,7 @@
               <p id="message-helper" class="helper-message">
                 10자 이상 300자 이하로 입력해 주세요.
               </p>
-              <p id="message-count" class="character-count" aria-live="polite">
-                0 / 300자
-              </p>
+              <p id="message-count" class="character-count">0 / 300자</p>
             </div>
 
             <p

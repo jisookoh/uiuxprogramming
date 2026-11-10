@@ -166,6 +166,7 @@ function validateNickname() {
 
   if (!nickname) {
     $nicknameError.textContent = "이름 또는 닉네임을 입력해 주세요.";
+    $nicknameInput.setAttribute("aria-invalid", "true");
     $nicknameInput.classList.add("has-error");
     $nicknameInput.focus();
     return false;
@@ -173,6 +174,7 @@ function validateNickname() {
 
   formData.nickname = nickname;
   $nicknameError.textContent = "";
+  $nicknameInput.removeAttribute("aria-invalid");
   $nicknameInput.classList.remove("has-error");
   return true;
 }
@@ -182,6 +184,7 @@ function validateRelation() {
 
   if (!$relation) {
     $relationError.textContent = "신랑 또는 신부를 선택해 주세요.";
+    $relationInputs[0].setAttribute("aria-invalid", "true");
     $relationInputs[0].focus();
     return false;
   }
@@ -189,12 +192,16 @@ function validateRelation() {
   if (!$detailRelation.value) {
     $relationError.textContent = "";
     $detailError.textContent = "세부 관계를 선택해 주세요.";
+    $detailRelation.setAttribute("aria-invalid", "true");
     $detailRelation.focus();
     return false;
   }
 
-  if ($detailRelation.value === "기타" && !$otherRelation.value.trim()) {
+  const isOpenOther = $detailRelation.value === "기타";
+
+  if (isOpenOther && !$otherRelation.value.trim()) {
     $detailError.textContent = "기타 관계를 입력해 주세요.";
+    $otherRelation.setAttribute("aria-invalid", "true");
     $otherRelation.focus();
     return false;
   }
@@ -204,6 +211,10 @@ function validateRelation() {
     $detailRelation.value === "기타"
       ? $otherRelation.value.trim()
       : $detailRelation.value;
+
+  $relationInputs[0].removeAttribute("aria-invalid");
+  $detailRelation.removeAttribute("aria-invalid");
+  $otherRelation.removeAttribute("aria-invalid");
   $relationError.textContent = $detailError.textContent = "";
   return true;
 }
@@ -248,6 +259,9 @@ $nicknameNext.addEventListener("click", () => {
 $detailRelation.addEventListener("change", () => {
   const isOther = $detailRelation.value === "기타";
   $otherRelation.hidden = !isOther;
+  $otherRelation.setAttribute("aria-expanded", String(isOther));
+  $otherRelation.disabled = !isOther;
+
   if (!isOther) $otherRelation.value = "";
 });
 
@@ -382,6 +396,12 @@ function updateCurrentNav() {
       link.removeAttribute("aria-current");
     }
   });
+
+  const currentLink = document.querySelector(
+    '.main-nav a[aria-current="page"]',
+  );
+  const pageName = currentLink ? currentLink.textContent.trim() : "홈";
+  document.title = pageName + " | 모바일 청첩장";
 }
 
 window.addEventListener("hashchange", updateCurrentNav);
@@ -392,6 +412,15 @@ menuToggle.addEventListener("click", () => {
 
   menuToggle.textContent = isOpen ? "메뉴 닫기" : "메뉴 열기";
   menuToggle.setAttribute("aria-expanded", String(isOpen));
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape" || !mainNav.classList.contains("is-open")) return;
+
+  mainNav.classList.remove("is-open");
+  menuToggle.textContent = "메뉴 열기";
+  menuToggle.setAttribute("aria-expanded", "false");
+  menuToggle.focus();
 });
 
 navLinks.forEach((link) => {
@@ -457,7 +486,22 @@ filterButtons.forEach((button) => {
       item.setAttribute("aria-pressed", String(selected));
     });
     renderGuestbookEntries();
+
+    const count = getVisibleGuestbook().length;
+    const filterName = button.textContent.trim();
+    emptyDescription.textContent =
+      count > 0
+        ? `${filterName} 지인이 남긴 방명록이 ${count}개가 표시됩니다.`
+        : `${filterName} 방명록이 없습니다. 다른 조건을 선택해 보세요.`;
   });
+});
+
+emptyState.querySelector("a").addEventListener("click", (event) => {
+  if (currentFilter === "all") return;
+  event.preventDefault();
+  const allButton = document.querySelector('[data-filter="all"]');
+  allButton.click();
+  allButton.focus();
 });
 
 function saveCurrentGuestbookEntry() {
