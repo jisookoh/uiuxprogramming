@@ -4,22 +4,25 @@
   --page: #fbf7f2;
   --surface: #ffffff;
   --surface-soft: #f1e7dd;
-  --surface-raised: #fbf7f2;
-  --ink: #332923;
-  --muted: #6b5a50;
-  --muted-soft: #8b7669;
-  --line: #ded0c3;
-  --control-line: #c7b5a6;
-  --primary: #7b5236;
-  --primary-hover: #60402b;
-  --accent: #9a6844;
-  --accent-strong: #76543f;
-  --focus: #d7b795;
-  --hover-surface: #ecece8;
-  --danger: #9d243d;
-  --success: #18734f;
+  --surface-raised: #ffffff;
+  --ink: #2d211b;
+  --muted: #5f4d43;
+  --muted-soft: #6f5b50;
+  --line: #8f7869;
+  --control-line: #7a6354;
+  --primary: #70462d;
+  --primary-hover: #52311f;
+  --accent: #70462d;
+  --accent-strong: #5e3b28;
+  --header-link: #ffe1c2;
+  --header-link-hover: #ffffff;
+  --focus: #005fcc;
+  --focus-contrast: #ffffff;
+  --hover-surface: #e3d5c9;
+  --danger: #a11232;
+  --success: #0b6b46;
   --success-bg: #f2fbf6;
-  --disabled: #9b918a;
+  --disabled: #6f625a;
   --on-primary: #ffffff;
   --backdrop: #211b18cc;
   --backdrop-strong: #211b18dd;
@@ -28,25 +31,28 @@
 
 body.dark {
   color-scheme: dark;
-  --page: #211b18;
-  --surface: #2b231f;
-  --surface-soft: #342a25;
-  --surface-raised: #342a25;
-  --ink: #f6eee7;
-  --muted: #d3c5bb;
-  --muted-soft: #c0ad9f;
-  --line: #55443c;
-  --control-line: #6b5549;
-  --primary: #9a6844;
-  --primary-hover: #7b5236;
-  --accent: #e0ad7b;
-  --accent-strong: #d8aa7b;
-  --focus: #d8aa7b;
-  --hover-surface: #383432;
-  --danger: #f1b6aa;
-  --success: #6fd0a4;
+  --page: #1b1512;
+  --surface: #271f1b;
+  --surface-soft: #322823;
+  --surface-raised: #2a211d;
+  --ink: #fff8f2;
+  --muted: #dfd0c5;
+  --muted-soft: #c8b4a7;
+  --line: #887267;
+  --control-line: #9a8173;
+  --primary: #815536;
+  --primary-hover: #654129;
+  --accent: #f2bf8f;
+  --accent-strong: #e8b17f;
+  --header-link: #f5c99f;
+  --header-link-hover: #ffffff;
+  --focus: #ffd166;
+  --focus-contrast: #17110e;
+  --hover-surface: #4a3b34;
+  --danger: #ffb4ab;
+  --success: #78d9ad;
   --success-bg: #173c2f;
-  --disabled: #6d635d;
+  --disabled: #655b55;
   --on-primary: #ffffff;
   --backdrop: #120e0ccc;
   --backdrop-strong: #120e0cdd;
@@ -154,6 +160,7 @@ section {
 :focus-visible {
   outline: 3px solid var(--focus);
   outline-offset: 3px;
+  box-shadow: 0 0 0 6px var(--focus-contrast);
 }
 
 img {
@@ -181,7 +188,7 @@ img {
 }
 
 .main-nav a {
-  color: var(--primary);
+  color: var(--header-link);
   font-size: 14px;
   font-weight: 500;
   text-decoration: none;
@@ -189,11 +196,11 @@ img {
 }
 
 .main-nav a:hover {
-  color: var(--primary-hover);
+  color: var(--header-link-hover);
 }
 
 .main-nav a.is-current {
-  color: var(--primary);
+  color: var(--header-link);
   font-weight: 700;
 }
 
@@ -207,10 +214,6 @@ img {
   background-color: var(--surface);
   color: var(--ink);
   font-weight: 700;
-}
-
-body.dark nav a {
-  color: var(--accent-strong);
 }
 
 h1,
@@ -261,6 +264,8 @@ textarea {
   padding: 12px;
   border: 1px solid var(--control-line);
   border-radius: 10px;
+  color: var(--ink);
+  background-color: var(--surface);
 }
 
 figure {
@@ -315,6 +320,7 @@ select:focus,
 textarea:focus {
   outline: 3px solid var(--focus);
   outline-offset: 2px;
+  box-shadow: 0 0 0 5px var(--focus-contrast);
 }
 
 form {
